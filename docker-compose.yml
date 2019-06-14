@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+ proxy-inverse:
+   image: ./proxy-inverse 
+   container_name: stores-proxy
+   depends_on:
+     - api-gateway
+   ports:
+     - "80:80"
+ api-gateway:
+   image: ./API-Gateway
+   container_name: api-gateway
+   environment:
+      TRADINGS_URL: '3.83.64.54'
+      TRADINGS_PORT: '4005'
+      TRADINGS_ENTRY: 'trading'
+      PRODUCTS_URL: '3.89.226.210'
+      PRODUCTS_PORT: '4006'
+      PRODUCTS_ENTRY: 'products'
+      STORES_URL: '3.89.226.210'
+      STORES_PORT: '3001'
+      STORES_ENTRY: 'stores-ms/resources/stores'
+      USERS_URL: '3.83.64.54'
+      USERS_PORT: '3000'
+      USERS_ENTRY: 'courses-ms/resources/courses'
+      LOGIN_URL: '3.83.64.54'
+      LOGIN_PORT: '3000'
+      LOGIN_ENTRY: 'courses-ms/resources/auth'
